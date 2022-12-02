@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "Event.h"
+#include "EventTicket.h"
+#include "PersonInfo.h"
 using namespace std;
 
 int main() {
