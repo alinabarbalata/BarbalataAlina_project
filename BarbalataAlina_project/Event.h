@@ -30,4 +30,31 @@ public:
 		this->noZones = noZones;
 		this->noSeatsPerRow;
 	}
+	int getNoRowsPerZone() {
+		return this->noRowsPerZone;
+	}
+
+	int getNoSeatsPerRow() {
+		return this->noSeatsPerRow;
+	}
+
+	int getNoZones() {
+		return this->noZones;
+	}
+
+	string* getZones() {
+		string* copy = new string[this->noZones];
+		for (int i = 0; i < this->noZones; i++) {
+			copy[i] = this->zones[i];
+		}
+		return copy;
+	}
+
+	char* getLocation() {
+		char* copy = new char[strlen(this->location) + 1];
+		for (int i = 0; i < strlen(copy); i++) {
+			copy[i] = location[i];
+		}
+		return copy;
+	}
 };
