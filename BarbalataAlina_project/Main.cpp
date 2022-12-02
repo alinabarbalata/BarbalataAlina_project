@@ -8,7 +8,7 @@ int main() {
 	string zones[] = { "A","B","C" };
 	location1.setZonesAndNoZones(zones, 3);
 	int* vector = nullptr;
-	cout << endl << "The number of rows is: " << location1.getNoRowsPerZone() << endl;
+	//cout << endl << "The number of seats for each zone is: " << location1.getNoSeatsPerZone() << endl;
 	for (int i = 0; i < location1.getNoZones(); i++) {
 		cout << endl << Event::lengthString(location1.getZones()[i]);
 	}

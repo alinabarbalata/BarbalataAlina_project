@@ -6,12 +6,12 @@ using namespace std;
 
 enum EventType { Movie, Football, Concert, Other };
 class Event {
-	int noRowsPerZone = 0;
+	int* noSeatsPerZone = nullptr;
 	string* zones = nullptr;
 	int noZones = 0;
-	int noSeatsPerRow = 0;
 	EventType type;
 	char* location = nullptr;
+	float* pricePerZone = nullptr;
 public:
 	const static int NO_MAX_SEATS = 300;
 	const static int NO_MIN_ROWS = 3;
@@ -19,32 +19,37 @@ public:
 	const static int NO_MAX_CHAR = 10;
 	const static int NO_MAX_ZONES = 5;
 	const static int NO_MIN_ZONES = 1;
+	//static int NO_EVENTS_CREATED;//init
 public:
 	Event() {
-		this->noRowsPerZone = 0;
+		this->noSeatsPerZone = nullptr;
 		this->type = Other;
 		this->zones = nullptr;
 		this->noZones = 0;
-		this->noSeatsPerRow = 0;
+		this->pricePerZone = nullptr;
+		//Event::NO_EVENTS_CREATED++;
 	}
-	Event(EventType type, string* zones, int noZones, int noSeatsPerRow) {
-		this->noRowsPerZone = 0;
-		this->type = type;
-		delete[] this->zones;
-		this->zones = new string[this->noZones];
-		for (int i = 0; i < this->noZones; i++) {
-			this->zones[i] = zones[i];
-		}
+	Event(EventType type, string* zones, int noZones, int* noSeatsPerZone, float* pricePerZone) {
 		this->noZones = noZones;
-		this->noSeatsPerRow;
+		delete[] this->noSeatsPerZone, delete[] this->zones, delete[] pricePerZone;
+		this->noSeatsPerZone = new int[this->noZones];
+		this->zones = new string[this->noZones];
+		this->pricePerZone = new float[noZones];
+		for (int i = 0; i < this->noZones; i++) {
+			this->noSeatsPerZone[i] = noSeatsPerZone[i];
+			this->zones[i] = zones[i];
+			this->pricePerZone[i] = pricePerZone[i];
+		}
+		this->type = type;
+		//Event::NO_EVENTS_CREATED++;
 	}
-	int getNoRowsPerZone() {
-		return this->noRowsPerZone;
-	}
-
-	int getNoSeatsPerRow() {
-		return this->noSeatsPerRow;
-	}
+	/*int* getNoSeatsPerZone() {
+		int* copy = new int[this->noZones+1];
+		for (int i = 0; i < this->noZones; i++) {
+			copy[i] = this->noSeatsPerZone[i];
+		}
+		return copy;
+	}*/
 
 	int getNoZones() {
 		return this->noZones;
@@ -66,16 +71,24 @@ public:
 		return copy;
 	}
 
+	float* getPricePerZone() {
+		float* copy = new float[this->noZones];
+		for (int i = 0; i < this->noZones; i++) {
+			copy[i] = pricePerZone[i];
+		}
+		return copy;
+	}
+
 	void setType(EventType type) {
 		this->type = type;
 	}
 
-	void setNoRowsPerZone(int noRowsPerZone) {
-		this->noRowsPerZone = noRowsPerZone;
-	}
-
-	void setNoSeatsPerRow(int noSeatsPerRow) {
-		this->noSeatsPerRow = noSeatsPerRow;
+	void setNoSeatsPerZone(int* noSeatsPerZone) {
+		delete[] this->noSeatsPerZone;
+		this->noSeatsPerZone = new int[this->noZones];
+		for (int i = 0; i < this->noZones; i++) {
+			this->noSeatsPerZone[i] = noSeatsPerZone[i];
+		}
 	}
 
 	void setLocation(const char* location) {
@@ -97,9 +110,17 @@ public:
 			}
 		}
 		delete[] this->zones;
-		this->zones = new string[this->noZones + 1];
+		this->zones = new string[this->noZones];
 		for (int i = 0; i < this->noZones; i++) {
 			this->zones[i] = zones[i];
+		}
+	}
+
+	void setPricePerZone(float* pricePerZone) {
+		delete[] this->pricePerZone;
+
+		for (int i = 0; i < this->noZones; i++) {
+			this->pricePerZone[i] = pricePerZone[i];
 		}
 	}
 
@@ -110,4 +131,31 @@ public:
 		}
 		return count;
 	}
+
+	//COPY CONSTRUCTOR
+
+	Event(const Event& object) {
+		this->noZones = object.noZones;
+		delete[] this->noSeatsPerZone, delete[] this->zones, delete[] pricePerZone;
+		this->noSeatsPerZone = new int[this->noZones];
+		this->zones = new string[this->noZones];
+		this->pricePerZone = new float[noZones];
+		for (int i = 0; i < this->noZones; i++) {
+			this->noSeatsPerZone[i] = object.noSeatsPerZone[i];
+			this->zones[i] = object.zones[i];
+			this->pricePerZone[i] = object.pricePerZone[i];
+		}
+		this->type = object.type;
+	}
+	
+	//DESTRUCTOR
+	~Event() {
+		delete[] this->location;
+		delete[] this->noSeatsPerZone;
+		delete[] this->pricePerZone;
+		delete[] this->zones;
+		//Event::NO_EVENTS_CREATED--;
+	}
 };
+
+//static int Event::NO_EVENTS_CREATED = 0;//?
