@@ -32,19 +32,9 @@ int main() {
 	}
 
 	cout << endl<<"**********************************";
-	//char dateBirth[] = "02.03.2004";
-	//char phoneNo[] = "0724440506";
-	//PersonInfo person1("Andreea");//works
-	//char dateBirth[] = "02.03.20045";
-	//PersonInfo person1("Andreea", dateBirth, "0724440506");//throws error because the char length is larger than it's supposed to be
-	//char dateBirth[] = "0.203.2004";
-	//PersonInfo person1("Andreea", dateBirth, "0724440506");//throws error because the '.' character is on the wrong index
-	//char dateBirth[] = "0A.03.2004";
-	//PersonInfo person1("Andreea", dateBirth, "0724440506");//throws error because there is a char who is a letter
-	//char dateBirth[] = "02.03.2004";
-	//char phoneNo[] = "0724440506";
-	//PersonInfo person1("Andreea", dateBirth, phoneNo);//works
+	
 	PersonInfo person1("Andreea");
 	person1.setDateBirth(6, 10, 2003);
 	cout << endl << person1.getName() << " birthday:" << person1.getDayBirth() << "." << person1.getMonthBirth() << "." << person1.getYearBirth();
+	cout << endl<<"Id: "<<person1.getId();
 }

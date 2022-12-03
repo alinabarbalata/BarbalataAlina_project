@@ -13,12 +13,13 @@ private:
 
 	const static int NO_DIGITS = 10;
 	const static int NO_CHARACTERS_DATE = 8;
+	static int COUNTER;
 public:
 	PersonInfo(const string name) {
 		this->name = name;
+		PersonInfo::COUNTER++;
 		cout << endl << "Person " << this->name << " was created";
 	}
-
 
 	string getName() {
 		return this->name;
@@ -41,4 +42,15 @@ public:
 		this->monthBirth = month;
 		this->yearBirth = year;
 	}
+
+	int getId() {
+		this->idPerson = PersonInfo::COUNTER;
+		return this->idPerson;
+	}
+
+	~PersonInfo() {
+		PersonInfo::COUNTER--;
+	}
+
 };
+int PersonInfo::COUNTER = 0;
