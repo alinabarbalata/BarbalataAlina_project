@@ -31,4 +31,13 @@ int main() {
 		cout << endl << Event::lengthString(location1.getZones()[i]);
 	}
 
+	cout << endl<<"**********************************";
+	//char dateBirth[] = "02.03.2004";
+	//PersonInfo person1("Andreea", dateBirth, "0724440506");//works
+	//char dateBirth[] = "02.03.20045";
+	//PersonInfo person1("Andreea", dateBirth, "0724440506");//throws error because the char length is larger than it's supposed to be
+	//char dateBirth[] = "0.203.2004";
+	//PersonInfo person1("Andreea", dateBirth, "0724440506");//throws error because the '.' character is on the wrong index
+	//char dateBirth[] = "0A.03.2004";
+	//PersonInfo person1("Andreea", dateBirth, "0724440506");//throws error because there is a char who is a letter
 }
