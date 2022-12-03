@@ -7,8 +7,8 @@ enum EventTicketType {VIP,A,B,C};
 class EventTicket {
 	int* id;
 	int lengthId = 0;
-	string date = { "01.01.2022" };
-	string time = { "00:00" };
+	string date = "01.01.2022" ;
+	string time = "00:00";
 	char* namePerson = nullptr;
 private:
 	static int COUNTER;

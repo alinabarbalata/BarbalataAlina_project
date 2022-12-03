@@ -19,7 +19,8 @@ public:
 	const static int NO_MAX_CHAR = 10;
 	const static int NO_MAX_ZONES = 5;
 	const static int NO_MIN_ZONES = 1;
-	//static int NO_EVENTS_CREATED;//init
+private:
+	static int NO_EVENTS_CREATED;
 public:
 	Event() {
 		this->noSeatsPerZone = nullptr;
@@ -27,7 +28,7 @@ public:
 		this->zones = nullptr;
 		this->noZones = 0;
 		this->pricePerZone = nullptr;
-		//Event::NO_EVENTS_CREATED++;
+		Event::NO_EVENTS_CREATED++;
 	}
 	Event(EventType type, string* zones, int noZones, int* noSeatsPerZone, float* pricePerZone) {
 		this->noZones = noZones;
@@ -41,10 +42,12 @@ public:
 			this->pricePerZone[i] = pricePerZone[i];
 		}
 		this->type = type;
-		//Event::NO_EVENTS_CREATED++;
+		Event::NO_EVENTS_CREATED++;
 	}
+
+	//does not work
 	/*int* getNoSeatsPerZone() {
-		int* copy = new int[this->noZones+1];
+		int* copy = new int[this->noZones];
 		for (int i = 0; i < this->noZones; i++) {
 			copy[i] = this->noSeatsPerZone[i];
 		}
@@ -133,7 +136,6 @@ public:
 	}
 
 	//COPY CONSTRUCTOR
-
 	Event(const Event& object) {
 		this->noZones = object.noZones;
 		delete[] this->noSeatsPerZone, delete[] this->zones, delete[] pricePerZone;
@@ -154,8 +156,8 @@ public:
 		delete[] this->noSeatsPerZone;
 		delete[] this->pricePerZone;
 		delete[] this->zones;
-		//Event::NO_EVENTS_CREATED--;
+		Event::NO_EVENTS_CREATED--;
 	}
 };
 
-//static int Event::NO_EVENTS_CREATED = 0;//?
+int Event::NO_EVENTS_CREATED = 0;
