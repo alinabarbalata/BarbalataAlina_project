@@ -37,4 +37,12 @@ int main() {
 	person1.setDateBirth(6, 10, 2003);
 	cout << endl << person1.getName() << " birthday:" << person1.getDayBirth() << "." << person1.getMonthBirth() << "." << person1.getYearBirth();
 	cout << endl<<"Id: "<<person1.getId();
+
+	char namePerson[] = "Andreea";
+
+	int seats[] = { 100, 100, 100 };
+	float prices[] = { 200,250,300 };
+	Event HorrorMovie(zones, 3, seats, prices);
+	HorrorMovie.setType(Movie);
+
 }

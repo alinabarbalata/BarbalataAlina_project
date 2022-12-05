@@ -16,7 +16,6 @@ private:
 	EventTicket(string date, string time, char* namePerson) {
 		this->date = date;
 		this->time = time;
-		delete[] this->namePerson;
 		this->namePerson = new char[strlen(namePerson) + 1];
 		for (int i = 0; i < strlen(namePerson) + 1; i++) {
 			this->namePerson[i] = namePerson[i];

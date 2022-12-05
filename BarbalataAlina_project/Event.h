@@ -30,9 +30,8 @@ public:
 		this->pricePerZone = nullptr;
 		Event::NO_EVENTS_CREATED++;
 	}
-	Event(EventType type, string* zones, int noZones, int* noSeatsPerZone, float* pricePerZone) {
+	Event(string* zones, int noZones, int* noSeatsPerZone, float* pricePerZone) {
 		this->noZones = noZones;
-		delete[] this->noSeatsPerZone, delete[] this->zones, delete[] pricePerZone;
 		this->noSeatsPerZone = new int[this->noZones];
 		this->zones = new string[this->noZones];
 		this->pricePerZone = new float[noZones];
@@ -41,7 +40,6 @@ public:
 			this->zones[i] = zones[i];
 			this->pricePerZone[i] = pricePerZone[i];
 		}
-		this->type = type;
 		Event::NO_EVENTS_CREATED++;
 	}
 
