@@ -1,5 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS//to fix!!!!!!
 #include <iostream>
 #include <string>
 using namespace std;
@@ -16,7 +16,7 @@ public:
 	const static int NO_MAX_SEATS = 300;
 	const static int NO_MIN_ROWS = 3;
 	const static int NO_MIN_CHAR_LOCATION = 3;
-	const static int NO_MAX_CHAR = 10;
+	const static int NO_MAX_CHAR = 100;
 	const static int NO_MAX_ZONES = 5;
 	const static int NO_MIN_ZONES = 1;
 private:
@@ -44,13 +44,13 @@ public:
 	}
 
 	//does not work
-	/*int* getNoSeatsPerZone() {
+	int* getNoSeatsPerZone() {
 		int* copy = new int[this->noZones];
 		for (int i = 0; i < this->noZones; i++) {
 			copy[i] = this->noSeatsPerZone[i];
 		}
 		return copy;
-	}*/
+	}
 
 	int getNoZones() {
 		return this->noZones;
@@ -65,7 +65,7 @@ public:
 	}
 
 	char* getLocation() {
-		char* copy = new char[strlen(this->location) + 1];
+		char* copy = new char[strlen(this->location)+1];
 		for (int i = 0; i < strlen(copy); i++) {
 			copy[i] = location[i];
 		}
@@ -98,7 +98,7 @@ public:
 		}
 		delete[] this->location;
 		this->location = new char[strlen(location) + 1];
-		//strcpy(this->location, location);//!!!!!!!!!!!!!!
+		strcpy(this->location, location);
 	}
 
 	void setZonesAndNoZones(const string* zones, const int noZones) {
@@ -133,6 +133,14 @@ public:
 		return count;
 	}
 
+	int getTotalNoSeats() {
+		int S = 0;
+		for (int i = 0; i < this->noZones; i++) {
+			S += this->noSeatsPerZone[i];//!
+		}
+		return S;
+	}
+
 	//COPY CONSTRUCTOR
 	Event(const Event& object) {
 		this->noZones = object.noZones;
@@ -156,6 +164,45 @@ public:
 		delete[] this->zones;
 		Event::NO_EVENTS_CREATED--;
 	}
+
+	int* operator+=(int value) {
+		int* copy = new int[this->noZones];
+		for (int i = 0; i < this->noZones; i++) {
+			this->pricePerZone[i] += value;
+			copy[i] = this->pricePerZone[i];
+		}
+		return copy;
+	}
+
+	bool operator>(Event& event) {
+		if (this->getTotalNoSeats() > event.getTotalNoSeats())
+			return true;
+		return false;
+	}//!
 };
+
+
+ostream& operator<<(ostream& out, Event& event) {
+	//out << endl<<"Type of event: "<<event.getType();
+	out << endl << "Number of zones: " << event.getNoZones();
+	int* seatsPerZone = event.getNoSeatsPerZone();
+	string* zones = event.getZones();
+	float* pricePerZone = event.getPricePerZone();
+	out << endl<< "Zones: ";
+	for (int i = 0; i < event.getNoZones(); i++) {
+		out << zones[i] << " ";
+	}
+	out << endl<<"Number of seats per zone: ";
+	for (int i = 0; i < event.getNoZones(); i++) {
+		out << seatsPerZone[i] << " ";
+	}
+	out << endl<<"Prices per zone: ";
+	for (int i = 0; i < event.getNoZones(); i++) {
+		out << pricePerZone[i] << " ";
+	}
+	char* location = event.getLocation();
+	out << endl << "Location: " << event.getLocation();
+	return out;
+}
 
 int Event::NO_EVENTS_CREATED = 0;

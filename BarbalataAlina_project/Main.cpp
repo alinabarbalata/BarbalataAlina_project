@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include "Event.h"
@@ -44,5 +45,16 @@ int main() {
 	float prices[] = { 200,250,300 };
 	Event HorrorMovie(zones, 3, seats, prices);
 	HorrorMovie.setType(Movie);
+	HorrorMovie.setLocation("Bucuresti nr 20");
 
+	cout << HorrorMovie;
+
+	HorrorMovie += 30;
+
+	cout << HorrorMovie;
+
+	if (HorrorMovie > location1)
+		cout << "HorrorMovie has more seats than location1";
+	else
+		cout << "location1 has more seats than HorrorMovie";
 }
