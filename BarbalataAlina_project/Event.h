@@ -189,8 +189,27 @@ public:
 			return true;
 		return false;
 	}
+	friend istream& operator>>(istream& in, Event& event);
 };
 
+istream& operator>>(istream& in, Event& event) {
+	cout << endl << "Number of zones: ";
+	in >> event.noZones;
+	for (int i = 0; i < event.noZones; i++) {
+		in >> event.zones[i];
+	}
+	cout << endl << "Number of seats per zone: ";
+	for (int i = 0; i < event.noZones; i++) {
+		in >> event.noSeatsPerZone[i];
+	}
+	cout << endl << "Prices per zone: ";
+	for (int i = 0; i < event.noZones; i++) {
+		in >> event.pricePerZone[i];
+	}
+	cout << endl << "Location: ";
+	in >> event.location;
+	return in;
+}
 
 ostream& operator<<(ostream& out, Event& event) {
 	out << endl<<"Type of event: "<<event.getType();

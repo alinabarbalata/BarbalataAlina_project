@@ -12,7 +12,7 @@ class EventTicket {
 	char* namePerson = nullptr;
 private:
 	static int COUNTER;
-
+public:
 	EventTicket() {
 		this->id = nullptr;
 		this->date = "-";
@@ -94,6 +94,23 @@ private:
 		}
 		return n;
 	}*/
+	friend istream& operator>>(istream& in, EventTicket& ticket);
 };
+istream& operator>>(istream& in, EventTicket& ticket) {
+	cout <<endl<< "Name: ";
+	in >> ticket.namePerson;
+	cout << endl << "Date of the event: ";
+	in >> ticket.date;
+	cout << "Time of the event: ";
+	in >> ticket.time;
+	return in;
+}
+
+ostream& operator<<(ostream& out, EventTicket& ticket) {
+	out << endl << "Name: " << ticket.getNamePerson();
+	out << endl << "Date: " << ticket.getDate();
+	out << endl << "Time: " << ticket.getTime();
+	return out;
+}
 
 int EventTicket::COUNTER = 0;

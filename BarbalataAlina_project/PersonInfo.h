@@ -10,6 +10,7 @@ private:
 	int dayBirth;
 	int monthBirth;
 	int yearBirth;
+	int noTicketsBought = 0;
 
 	const static int NO_DIGITS = 10;
 	const static int NO_CHARACTERS_DATE = 8;
@@ -54,11 +55,20 @@ public:
 		return this->idPerson;
 	}
 
+	int getNoTicketsBought() {
+		return this->noTicketsBought;
+	}
+
+	void setNoTicketsBought(int noTickets) {
+		this->noTicketsBought = noTickets;
+	}
 	~PersonInfo() {
 		PersonInfo::COUNTER--;
 	}
 	friend istream& operator>>(istream& in, PersonInfo& person);
+
 };
+
 
 istream& operator>>(istream& in, PersonInfo& person) {
 	cout << endl << "Name: ";
