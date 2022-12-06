@@ -5,16 +5,22 @@ using namespace std;
 
 class PersonInfo {
 private:
-	int idPerson = 0;
+	int idPerson;
 	string name = "-";
-	int dayBirth = 0;
-	int monthBirth = 0;
-	int yearBirth = 0;
+	int dayBirth;
+	int monthBirth;
+	int yearBirth;
 
 	const static int NO_DIGITS = 10;
 	const static int NO_CHARACTERS_DATE = 8;
 	static int COUNTER;
 public:
+	PersonInfo() {
+		this->name = "-";
+		this->dayBirth = 0;
+		this->monthBirth = 0;
+		this->yearBirth = 0;
+	}
 	PersonInfo(const string name) {
 		this->name = name;
 		PersonInfo::COUNTER++;
@@ -53,4 +59,12 @@ public:
 	}
 
 };
+
+ostream& operator<<(ostream& out, PersonInfo& person) {
+	out << endl << "Name: " << person.getName();
+	out << endl << "Day of birth: " << person.getDayBirth();
+	out << endl << "Month of birth: " << person.getMonthBirth();
+	out << endl << "Year of birth: " << person.getYearBirth();
+	return out;
+}
 int PersonInfo::COUNTER = 0;

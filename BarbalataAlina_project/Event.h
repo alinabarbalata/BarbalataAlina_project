@@ -43,7 +43,6 @@ public:
 		Event::NO_EVENTS_CREATED++;
 	}
 
-	//does not work
 	int* getNoSeatsPerZone() {
 		int* copy = new int[this->noZones];
 		for (int i = 0; i < this->noZones; i++) {
@@ -78,6 +77,17 @@ public:
 			copy[i] = pricePerZone[i];
 		}
 		return copy;
+	}
+
+	string getType() {
+		if (this->type == Movie)
+			return "Movie";
+		else if (this->type == Football)
+			return "Football";
+		else if (this->type == Concert)
+			return "Concert";
+		else
+			return "Other";
 	}
 
 	void setType(EventType type) {
@@ -136,7 +146,7 @@ public:
 	int getTotalNoSeats() {
 		int S = 0;
 		for (int i = 0; i < this->noZones; i++) {
-			S += this->noSeatsPerZone[i];//!
+			S =S+ this->noSeatsPerZone[i];
 		}
 		return S;
 	}
@@ -178,12 +188,12 @@ public:
 		if (this->getTotalNoSeats() > event.getTotalNoSeats())
 			return true;
 		return false;
-	}//!
+	}
 };
 
 
 ostream& operator<<(ostream& out, Event& event) {
-	//out << endl<<"Type of event: "<<event.getType();
+	out << endl<<"Type of event: "<<event.getType();
 	out << endl << "Number of zones: " << event.getNoZones();
 	int* seatsPerZone = event.getNoSeatsPerZone();
 	string* zones = event.getZones();

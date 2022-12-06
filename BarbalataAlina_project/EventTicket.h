@@ -5,13 +5,20 @@ using namespace std;
 
 enum EventTicketType {VIP,A,B,C};
 class EventTicket {
-	int* id;
+	int* id=nullptr;
 	int lengthId = 0;
 	string date = "01.01.2022" ;
 	string time = "00:00";
 	char* namePerson = nullptr;
 private:
 	static int COUNTER;
+
+	EventTicket() {
+		this->id = nullptr;
+		this->date = "-";
+		this->time = "-";
+		this->namePerson = namePerson;
+	}
 
 	EventTicket(string date, string time, char* namePerson) {
 		this->date = date;

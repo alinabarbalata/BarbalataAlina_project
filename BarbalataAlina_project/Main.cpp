@@ -31,15 +31,17 @@ int main() {
 	for (int i = 0; i < location1.getNoZones(); i++) {
 		cout << endl << Event::lengthString(location1.getZones()[i]);
 	}
+	int seatsLocation1[] = { 120, 150, 80 };
+	location1.setNoSeatsPerZone(seatsLocation1);
 
 	cout << endl<<"**********************************";
 	
-	PersonInfo person1("Andreea");
+	/*PersonInfo person1("Andreea");
 	person1.setDateBirth(6, 10, 2003);
 	cout << endl << person1.getName() << " birthday:" << person1.getDayBirth() << "." << person1.getMonthBirth() << "." << person1.getYearBirth();
 	cout << endl<<"Id: "<<person1.getId();
 
-	char namePerson[] = "Andreea";
+	char namePerson[] = "Andreea";*/
 
 	int seats[] = { 100, 100, 100 };
 	float prices[] = { 200,250,300 };
@@ -47,12 +49,12 @@ int main() {
 	HorrorMovie.setType(Movie);
 	HorrorMovie.setLocation("Bucuresti nr 20");
 
-	cout << HorrorMovie;
+	/*cout << HorrorMovie;*/
 
 	HorrorMovie += 30;
 
-	cout << HorrorMovie;
-
+	/*cout << HorrorMovie;*/
+	cout << endl;
 	if (HorrorMovie > location1)
 		cout << "HorrorMovie has more seats than location1";
 	else
