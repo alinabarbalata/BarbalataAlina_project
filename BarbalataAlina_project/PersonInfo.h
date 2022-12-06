@@ -57,9 +57,20 @@ public:
 	~PersonInfo() {
 		PersonInfo::COUNTER--;
 	}
-
+	friend istream& operator>>(istream& in, PersonInfo& person);
 };
 
+istream& operator>>(istream& in, PersonInfo& person) {
+	cout << endl << "Name: ";
+	in >> person.name;
+	cout << endl << "Day of birth: ";
+	in >> person.dayBirth;
+	cout << endl << "Month of birth: ";
+	in >> person.monthBirth;
+	cout << endl << "Year of birth: ";
+	in >> person.yearBirth;
+	return in;
+}
 ostream& operator<<(ostream& out, PersonInfo& person) {
 	out << endl << "Name: " << person.getName();
 	out << endl << "Day of birth: " << person.getDayBirth();
